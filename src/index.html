@@ -4,8 +4,38 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>BrawlStars Quiz</title>
+        <link rel="stylesheet" href="./stylesheet.css" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
     </head>
     <body>
-        <h1>Let's Begin!!</h1>
+        <main class="app-shell">
+            <section class="quiz-card" aria-labelledby="quiz-title">
+                <div class="badge">Brawl Stars Quiz</div>
+                <h1 id="quiz-title">
+                    Guess the
+                    <span class="ms"
+                        ><span>B</span><span>r</span><span>a</span><span>w</span
+                        ><span>l</span><span>e</span><span>r</span></span
+                    >
+                    !
+                </h1>
+                <p class="subtitle">Type the character name and hit guess.</p>
+
+                <form class="guess-form" autocomplete="off">
+                    <label class="sr-only" for="character-name">Character name</label>
+                    <input
+                        id="character-name"
+                        name="character-name"
+                        type="text"
+                        placeholder="Enter character name"
+                    />
+                    <button type="submit">guess</button>
+                </form>
+            </section>
+
+            <div class="ambient ambient-one" aria-hidden="true"></div>
+            <div class="ambient ambient-two" aria-hidden="true"></div>
+        </main>
     </body>
+    <script src="./client.js"></script>
 </html>

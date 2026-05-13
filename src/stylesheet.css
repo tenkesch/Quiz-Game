@@ -1,0 +1,281 @@
+:root {
+    color-scheme: dark;
+    --bg: #181818;
+    --surface: #232323;
+    --surface-strong: #2a2a2a;
+    --text: #fff8e1;
+    --muted: #d3c8a0;
+    --accent-1: #ffd400;
+    --accent-2: #ffc300;
+    --accent-3: #ff8c00;
+    --accent-4: #ff5f00;
+    --ring: rgba(255, 212, 0, 0.32);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(255, 212, 0, 0.22), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 95, 0, 0.18), transparent 30%),
+        linear-gradient(160deg, #131313 0%, #1b1b1b 48%, #111111 100%);
+    color: var(--text);
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: radial-gradient(circle at center, black 55%, transparent 100%);
+    opacity: 0.3;
+}
+
+.app-shell {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 32px 16px;
+    overflow: hidden;
+}
+
+.quiz-card {
+    position: relative;
+    z-index: 1;
+    width: min(680px, 100%);
+    padding: clamp(28px, 5vw, 52px);
+    border-radius: 28px;
+    background: linear-gradient(180deg, rgba(42, 42, 42, 0.95), rgba(26, 26, 26, 0.94));
+    border: 1px solid rgba(255, 212, 0, 0.14);
+    box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(14px);
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #171717;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+    box-shadow: 0 10px 28px rgba(255, 140, 0, 0.25);
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2.3rem, 5vw, 4.6rem);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+}
+
+.subtitle {
+    margin: 14px 0 0;
+    max-width: 38ch;
+    color: var(--muted);
+    font-size: 1.03rem;
+    line-height: 1.6;
+}
+
+.guess-form {
+    margin-top: 30px;
+    display: flex;
+    gap: 14px;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.guess-form input {
+    flex: 1 1 280px;
+    min-width: 0;
+    border: 1px solid rgba(255, 195, 0, 0.2);
+    border-radius: 18px;
+    padding: 18px 18px;
+    background: rgba(16, 16, 16, 0.78);
+    color: var(--text);
+    font-size: 1.5rem;
+    outline: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
+}
+
+.guess-form input::placeholder {
+    color: rgba(255, 248, 225, 0.42);
+}
+
+.guess-form input:focus {
+    border-color: rgba(255, 212, 0, 0.75);
+    box-shadow: 0 0 0 4px var(--ring);
+    transform: translateY(-1px);
+}
+
+.guess-form button {
+    border: 0;
+    border-radius: 18px;
+    padding: 16px 24px;
+    min-width: 140px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #1d1d1d;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-4));
+    box-shadow:
+        0 16px 34px rgba(255, 95, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        filter 180ms ease;
+}
+
+.guess-form button:hover,
+.guess-form button:focus-visible {
+    transform: translateY(-2px);
+    filter: brightness(1.05) saturate(1.08);
+    box-shadow:
+        0 20px 40px rgba(255, 95, 0, 0.34),
+        0 0 0 4px rgba(255, 195, 0, 0.18);
+}
+
+.guess-form button:active {
+    transform: translateY(0);
+}
+
+.ambient {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(12px);
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.ambient-one {
+    width: 220px;
+    height: 220px;
+    top: 8%;
+    right: 8%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 212, 0, 0.3),
+        rgba(255, 140, 0, 0.02) 70%,
+        transparent 100%
+    );
+}
+
+.ambient-two {
+    width: 280px;
+    height: 280px;
+    left: -40px;
+    bottom: -60px;
+    background: radial-gradient(
+        circle,
+        rgba(255, 95, 0, 0.24),
+        rgba(255, 95, 0, 0.03) 60%,
+        transparent 100%
+    );
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 640px) {
+    .quiz-card {
+        border-radius: 22px;
+    }
+
+    .guess-form button {
+        width: 100%;
+    }
+}
+
+/* UNDERLINE ANIMATION: */
+.ms span {
+    text-decoration: underline 2px black;
+    text-underline-offset: 8px;
+    animation: meteor-shower-anim linear 1400ms infinite forwards;
+}
+
+.ms span:nth-of-type(1) {
+    animation-delay: 0ms;
+}
+.ms span:nth-of-type(2) {
+    animation-delay: 100ms;
+}
+.ms span:nth-of-type(3) {
+    animation-delay: 200ms;
+}
+.ms span:nth-of-type(4) {
+    animation-delay: 300ms;
+}
+.ms span:nth-of-type(5) {
+    animation-delay: 400ms;
+}
+.ms span:nth-of-type(6) {
+    animation-delay: 500ms;
+}
+.ms span:nth-of-type(7) {
+    animation-delay: 600ms;
+}
+.ms span:nth-of-type(8) {
+    animation-delay: 700ms;
+}
+.ms span:nth-of-type(9) {
+    animation-delay: 800ms;
+}
+.ms span:nth-of-type(10) {
+    animation-delay: 900ms;
+}
+.ms span:nth-of-type(11) {
+    animation-delay: 1000ms;
+}
+.ms span:nth-of-type(12) {
+    animation-delay: 1100ms;
+}
+.ms span:nth-of-type(13) {
+    animation-delay: 1200ms;
+}
+
+@keyframes meteor-shower-anim {
+    0% {
+        text-decoration-color: DarkOrange;
+    }
+    10% {
+        text-decoration-color: LightYellow;
+    }
+    75% {
+        text-decoration-color: black;
+    }
+}
+
+/* END OF UNDERLINE ANIMATION */
